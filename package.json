@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa2": "^2.0.0-alpha.7",
-    "ramda": "^0.25.0"
+    "koa-router": "^7.4.0",
+    "koa": "^2.3.0",
+    "lodash": "^4.17.10",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "ramda": "^0.25.0",
+    "sequelize": "^4.37.10"
   },
-
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-module-alias": "^1.6.0",
