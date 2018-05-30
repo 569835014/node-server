@@ -6,7 +6,7 @@ const MIDDLEWARES = ['database', 'common', 'router','static']
 class Server{
     constructor(){
         this.app=new Koa();
-        this.useMiddleWares(this.app)(MIDDLEWARES)
+         this.useMiddleWares(this.app)(MIDDLEWARES)
     }
     useMiddleWares(app) {
         return R.map(R.compose(
