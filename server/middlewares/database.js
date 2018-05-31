@@ -19,7 +19,7 @@ export const database=app=>{
         .filter(file=>~file.search(/^[^\.].*js$/))
         .forEach((file)=>{
             let Model=require(resolve(models,file)).default
-            new Model(sequelize)
+            Model.Single=new Model(sequelize)
         })
     sequelize.sync()
     // var Article = sequelize.define('Article', {

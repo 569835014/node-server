@@ -1,13 +1,15 @@
 import { controller, get, post ,required} from '../decorator/router'
 const fs = require('fs');
-
+import UserModle from '../database/model/UserModle'
+let User=UserModle.created().model
 @controller('/app')
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
-        User.findAll({
+       let a=await User.findAll({
             name: { exclude: ['baz'] }
         });
+       console.info(a)
         return ctx.body={
             "message":"hello koa"
         };
