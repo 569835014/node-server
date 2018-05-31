@@ -5,6 +5,9 @@ const fs = require('fs');
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
+        User.findAll({
+            name: { exclude: ['baz'] }
+        });
         return ctx.body={
             "message":"hello koa"
         };
