@@ -5,14 +5,12 @@ const fs = require('fs');
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
-        console.info(1111)
         return ctx.body={
             "message":"hello koa"
         };
     }
     @post('/upload')
     async uploadFile(ctx,next){
-        console.info(ctx.request.body)
         try{
             let file = ctx.request.body.files.file;
             const reader = fs.createReadStream(file.path);// 创建可读流

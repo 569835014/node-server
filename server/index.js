@@ -4,8 +4,7 @@ console.info(process.env.NODE_ENV)
 import config from './config'
 import {resolve} from 'path'
 const r = path => resolve(__dirname, path)
-const MIDDLEWARES = ['database','router']
-
+const MIDDLEWARES = ['database','router','common']
 class Server{
     constructor(){
         this.app=new Koa();
@@ -22,7 +21,7 @@ class Server{
     start(){
         this.app.use((ctx,next) => {
             ctx.status = 200 // koa defaults to 404 when it sees that status is unset
-            next()
+
         })
         this.app.listen(config.app.port, config.app.host)
         console.log('Server listening on' + config.app.host + ':' + config.app.port)

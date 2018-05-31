@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body": "^5.1.0",
+    "glob": "^7.1.2",
+    "koa": "^2.5.1",
+    "koa-body": "^2.6.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cors": "^0.0.16",
     "koa-router": "^7.4.0",
-    "koa": "^2.3.0",
     "lodash": "^4.17.10",
-    "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "ramda": "^0.25.0",
     "sequelize": "^4.37.10"
