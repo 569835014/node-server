@@ -6,13 +6,8 @@ let User=UserModle.created().model
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
-       let a=await User.findAll({
-            name: { exclude: ['baz'] }
-        });
-       console.info(a)
-        return ctx.body={
-            "message":"hello koa"
-        };
+       let a=await User.findAll();
+        return ctx.body=a
     }
     @post('/upload')
     async uploadFile(ctx,next){
