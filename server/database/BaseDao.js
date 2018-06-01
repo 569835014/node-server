@@ -49,13 +49,7 @@ class BaseDao {
         let model= await this.handle('findById',params)
         model.destroy();
     }
-    //为实例添加addHook
-    on(...arg){
-        this.model.addHook.apply(this,arg)
-    }
-    off(...arg){
-        this.model.removeHook.apply(this,arg)
-    }
+
     async query(params){
         this.database.query(params)
     }
