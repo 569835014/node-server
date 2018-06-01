@@ -12,7 +12,7 @@ class ModelBase {
         return  this.Single
     }
     define(database){
-        this.model=database.define(this.config.name,this.config.model)
+        this.model=database.define(this.config.name,this.config.model,this.config.scope)
     }
 }
 export default ModelBase
