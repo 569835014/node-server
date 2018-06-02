@@ -14,6 +14,7 @@ class ModelBase {
     define(database){
         this.model=database.define(this.config.name,this.config.model,this.config.scope)
     }
+    relation(){}
     //为实例添加addHook
     on(...arg){
         this.model.addHook.apply(this,arg)
