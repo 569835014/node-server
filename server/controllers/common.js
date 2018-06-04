@@ -6,10 +6,6 @@ let User=UserService.created()
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
-        await User.bulkCreate({
-            name:223,
-            title:444
-        })
        let a=await User.findAll();
         return ctx.body=a
     }
