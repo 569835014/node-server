@@ -1,31 +1,18 @@
 import Sequelize from 'sequelize'
-class ModelBase {
-    constructor(database){
-        this.database=database;
+class Service {
+    constructor(model,database){
+        this.model=model;
         this.Sequelize=Sequelize
+        this.database=database
     }
     static Single
-    static created(database,Model){
+    static created(database,model){
         if(!this.Single){
-            this.Single=new Model(database)
+            this.Single=new Service(database,model)
         }
         return  this.Single
     }
-    define(database){
-        this.model=database.define(this.config.name,this.config.model,this.config.scope)
-    }
-    relation(){}
-    //为实例添加addHook
-    on(...arg){
-        this.model.addHook.apply(this,arg)
-    }
-    off(...arg){
-        this.model.removeHook.apply(this,arg)
-    }
     async handle(name,params){
-        if(params&&params.scope){
-            return await this.model.scope(params.scope)[name](params)
-        }
         return await this.model[name](params)
     }
     async findById(params){
@@ -65,21 +52,16 @@ class ModelBase {
         return await this.handle('delete',params)
     }
     async deleteById(params){
+
         let model= await this.handle('findById',params)
         model.destroy();
     }
     async query(params){
-        this.database.query(params)
+       return await this.model.query(params)
     }
     //合并数据库操作添加到事物中
     async transaction(dataBaseFn){
-        let transaction=await this.database.transaction()
-        try {
-            await dataBaseFn();
-        }catch (e) {
-            return await transaction.rollback()
-        }
-        return await transaction.commit()
+     return this.model.transaction(dataBaseFn)
     }
 }
-export default ModelBase
+export default Service

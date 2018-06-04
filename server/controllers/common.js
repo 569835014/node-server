@@ -1,11 +1,15 @@
 import { controller, get, post ,required} from '../decorator/router'
 const fs = require('fs');
-import UserModle from '../database/model/UserModle'
-let User=UserModle.created().model
+import UserService from '../service/imp/UserService'
+let User=UserService.created()
 @controller('/app')
 export class CommonController{
     @get('/imgCode')
     async imgCode(ctx,next){
+        await User.bulkCreate({
+            name:223,
+            title:444
+        })
        let a=await User.findAll();
         return ctx.body=a
     }
