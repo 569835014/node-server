@@ -8,6 +8,6 @@
   },
   "app":{
     "host":"localhost",
-    "port":8009
+    "port":9006
   }
 }

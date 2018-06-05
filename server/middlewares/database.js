@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize'
+import asyncRequire from '../plugins/asyncRequire'
 import config from'../config'
 import {resolve} from 'path'
 const models=resolve(__dirname,'../database/model')
@@ -6,7 +7,7 @@ const services=resolve(__dirname,'../service/imp')
 import fs from 'fs'
 
 let sequelize;
-export const database=app=>{
+export const database=async app=>{
      sequelize=new Sequelize(config.db.database, config.db.username, null ,{
         host: config.db.host,
         dialect: 'mysql',
@@ -27,11 +28,10 @@ export const database=app=>{
     for(let key in ModelArray){
          let model= ModelArray[key]
          try {
-             console.info(resolve(__dirname,`${services}/${key}Service.js`))
-             let Service=require(resolve(__dirname,`${services}/${key}Service.js`)).default
+             let Service=await asyncRequire(resolve(__dirname,`${services}/${key}Service.js`))
              Service.Single=new Service(model,model.database)
          }catch (e) {
-             console.info(e)
+
          }
         model.relation()
     }
